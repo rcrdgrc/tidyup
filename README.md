@@ -4,7 +4,7 @@
 
 **What we need to Start**
 
-* [Wire Frame] (https://wireframe.cc/B25DqW)
+* [Wire Frame](https://wireframe.cc/B25DqW)
 * Schema
   * User:
     * Name: content: String,
@@ -13,7 +13,7 @@
     
   * Appointment:
     * Date: type:date
-    *
+    * Time: type:time
     * timestamp: true
   * Services:
     * Number of rooms type: Number
