@@ -1,5 +1,6 @@
 # tidyup
 
+*This text will be italic*
 
 **This text will be bold**
 __This will also be bold_
