@@ -1,9 +1,21 @@
 # tidyup
 
-*This app is for a customer wanting to set up a cleaning appointment with thier cleaning company*
+*This app is used to set up a cleaning appointment with and awesome cleaning company*
 
 **What we need to Start**
 
+* [Wire Frame] (https://wireframe.cc/B25DqW)
+* Schema
+  * User:
+    1. Name
+    2. Address
+    3. Phone Number
+    
+  * Appointment:
+    *
+  * Services:
+    *
+    
 * We need an Express app
 * Model
 * API RESTful routes
