@@ -17,7 +17,7 @@ function index(req, res, next) {
   .sort(sortKey).exec(function(err, users) {
     if (err) return next(err);
     // Passing search values, name & sortKey, for use in the EJS
-    res.render('users/index', {
+    res.render('users', {
       users,
       user: req.user,
       name: req.query.name,
@@ -28,7 +28,7 @@ function index(req, res, next) {
 
 // function addFact(req, res, next) {
 //   req.user.facts.push(req.body);
-//   req.user.save(function(err) {
+//   req.user.save(function(err) {~~
 //     res.redirect('/users');
 //   });
 // }
