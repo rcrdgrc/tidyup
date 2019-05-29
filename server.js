@@ -18,6 +18,8 @@ require('./config/passport');
 // require our routes
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var addressRouter = require('./routes/address')
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -40,7 +42,7 @@ app.use(passport.session());
 // mount all routes with appropriate base paths
 app.use('/', indexRouter);
 app.use('/', usersRouter); //this used to have user/ instead of /
-
+app.use('/', addressRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res) {
   res.status(404).send('Cant find that!');
