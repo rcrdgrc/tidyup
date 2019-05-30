@@ -17,6 +17,7 @@ require('./config/passport');
 
 // require our routes
 var indexRouter = require('./routes/index');
+var apptRouter = require('./routes/appts');
 var usersRouter = require('./routes/users');
 var addressRouter = require('./routes/address')
 
@@ -41,8 +42,10 @@ app.use(passport.session());
 
 // mount all routes with appropriate base paths
 app.use('/', indexRouter);
+app.use('/', apptRouter);
 app.use('/', usersRouter); //this used to have user/ instead of /
 app.use('/', addressRouter);
+
 // catch 404 and forward to error handler
 app.use(function(req, res) {
   res.status(404).send('Cant find that!');
