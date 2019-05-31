@@ -1,22 +1,24 @@
-var router = require('express').Router();
-var usersCtrl = require('../controllers/users');
+var express = require('express');
+var router = express.Router();
+var userCtrl = require('../controllers/users')
 
-// GET /users
+/* GET users listing. */
+router.get('/index', isLoggedIn, userCtrl.index);
+router.get('/new', isLoggedIn, userCtrl.newAppt)
+router.get('/:id/edit', isLoggedIn, userCtrl.edit)
+router.get('/:id', isLoggedIn, userCtrl.show)
 
-router.get('/users', usersCtrl.index);
+router.post('/showadd', isLoggedIn, userCtrl.create)
 
-// POST /facts
-// We will already have access to the logged in student on
-// the server, therefore do not use: /users
-// /:id/facts
-// router.post('/facts', isLoggedIn, usersCtrl.addFact);
+router.put('/:id', isLoggedIn, userCtrl.save)
 
-// DELETE /facts/:id
-// router.delete('/facts/:id', usersCtrl.delFact);
+router.delete('/:id', isLoggedIn, userCtrl.deleteAppt)
+
+
+
 
 function isLoggedIn(req, res, next) {
-  if ( req.isAuthenticated() ) return next();
+  if (req.isAuthenticated() ) return next();
   res.redirect('/auth/google');
 }
-
 module.exports = router;

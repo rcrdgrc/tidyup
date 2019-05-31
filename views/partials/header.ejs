@@ -2,28 +2,30 @@
 <html>
 
 <head>
-  <title>Tidy Up</title>
+  <title>Home</title>
   <!-- Google Icon Fonts used by Materialize -->
   <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!-- Materialize CSS Framework -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link rel="stylesheet" href="stylesheets/style.css" />
   <!-- JavaScript for Materialize -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <div class="navbar-fixed">
-        <nav>
-          <div class="nav-wrapper">
-            <a href="/address" class="brand-logo left">Tidy Up</a>
-            <ul class="right">
-              <li>
-                <% if (user) { %>
-                    <a href="/logout"><i class="material-icons left">trending_flat</i>Log Out</a>
-                <% } else { %>
-                    <a href="/auth/google"><i class="material-icons left">vpn_key</i>Login with Google</a>
-                <% } %>
-              </li>
-            </ul>
-          </div>
-        </nav>
-      </div>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
+
+<body>
+  <div class="navbar-fixed">
+    <nav>
+      <div class="nav-wrapper">
+        <a href="" class="brand-logo left">Tidy Up</a>
+        <ul class="right">
+          <li>
+            <% if (user) { %>
+                <a href="/logout">Log Out</a>
+            <% } else { %>
+                <a href="/auth/google">Login with Google</a>
+            <% } %>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>

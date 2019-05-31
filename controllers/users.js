@@ -1,43 +1,98 @@
 const User = require('../models/user');
 
 module.exports = {
+  deleteAppt,
   index,
-  // addFact,
-  // delFact
+  newAppt,
+  create,
+  show,
+  edit,
+  save
 };
 
-function index(req, res, next) {
-  console.log(req.query)
-  // Make the query object to use with User.find based up
-  // the user has submitted the search form or now
-  let modelQuery = req.query.name ? {name: new RegExp(req.query.name, 'i')} : {};
-  // Default to sorting by name
-  let sortKey = req.query.sort || 'name';
-  User.find(modelQuery)
-  .sort(sortKey).exec(function(err, users) {
-    if (err) return next(err);
-    // Passing search values, name & sortKey, for use in the EJS
-    res.render('./users/index', {
-      users,
-      user: req.user,
-      name: req.query.name,
-      sortKey
-    });
-  });
+function save(req, res){
+  let name = req.user.name
+  User.findOne({name: name})
+  .then(person=>{
+    let port = person.portfolio.id(req.params.id)
+    port.set(req.body)
+    person.save(()=>{
+      res.redirect(`/users/${req.params.id}`)
+    })
+  })
 }
 
-// function addFact(req, res, next) {
-//   req.user.facts.push(req.body);
-//   req.user.save(function(err) {~~
-//     res.redirect('/users');
-//   });
-// }
+function edit(req, res){
+  let name = req.user.name
+  User.findOne({name: name})
+  .then(person=>{
+    let port = person.portfolio.id(req.params.id)
+    res.render('users/edit', {
+      port,
+      user: req.user,
+      title: 'Appointments'
+    })
+  })
+}
 
-// function delFact(req, res, next) {
-//   User.findOne({'facts._id': req.params.id}, function(err, user) {
-//     user.facts.id(req.params.id).remove();
-//     user.save(function(err) {
-//       res.redirect('/users');
-//     });
-//   });
-// }
+function deleteAppt(req, res){
+  let name = req.user.name
+  User.findOne({name: name})
+  .then(person=>{
+    person.portfolio.remove(req.params.id)
+    person.save(()=>{
+      res.redirect(`/users/index`)
+    })
+  })
+}
+
+
+function show(req, res){
+  let name = req.user.name
+  //add request here
+  User.findOne({name: name})
+  .then(person=>{
+    let port = person.portfolio.id(req.params.id)
+    res.render('users/show', {
+      title: 'Appointments',
+      user: req.user,
+      port
+    })
+  })
+}
+
+function create(req, res){
+  let name = req.user.name
+  User.findOne({name: name})
+  .then(person =>{
+    person.portfolio.push(req.body)
+    person.save(()=>{
+      res.render('users/showadd',{
+        title: 'Appointments',
+        port: req.body,
+        user: req.user,
+        person
+      })
+    })
+  })
+}
+
+function index(req, res, next) {
+  let name = req.user.name
+  User.findOne({name: name})
+    .then(person=>{
+      res.render('users/index', {
+        title: 'Appointments',
+        user: req.user,
+        person
+      })
+    });
+}
+
+function newAppt(req, res){
+  console.log(req.user)
+  res.render('users/create', {
+    user: req.user,
+    title: 'Appointments'
+  })
+}

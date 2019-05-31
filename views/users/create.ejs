@@ -1,0 +1,39 @@
+<% include ../partials/header %>
+
+<br>
+<div class="row">
+    <form class="col s12" action="/users/showadd" method="POST">
+        <div class="row">
+            <div class="input-field col s12">
+                <input name="address" type="text">
+                <label for="address">Street Address</label>
+            </div>
+        </div>
+        <div class="input-field col s12">
+            <select name="city">
+                <option value="" disabled selected></option>
+                <option value="Austin">Austin</option>
+                <option value="Cedar Park">Cedar Park</option>
+            </select>
+            <label for="risk">City</label>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input name="state" type="text">
+                <label for="state">State</label>
+            </div>
+        </div>
+        <div>
+            Select a time:
+            <input type="date" name="date" data-date-format="DD MMMM YYYY" >
+        </div>
+        <input type="submit" value="Submit">
+    </form>
+</div>
+
+
+
+
+
+
+<% include ../partials/createFooter %>

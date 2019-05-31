@@ -1,39 +1,36 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Tidy Up</title>
-  <!-- Google Icon Fonts used by Materialize -->
-  <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <!-- Materialize CSS Framework -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  <link rel="stylesheet" href="stylesheets/style.css" />
-  <!-- JavaScript for Materialize -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  
-</head>
-<div class="navbar-fixed">
-  <nav>
-    <div class="nav-wrapper">
-      <a href="/address" class="brand-logo left">Tidy Up</a>
-      <ul class="right">
-        <li>
-          <% if (user) { %>
-              <a href="/logout"><i class="material-icons left">trending_flat</i>Log Out</a>
-          <% } else { %>
-              <a href="/auth/google"><i class="material-icons left">vpn_key</i>Login with Google</a>
-          <% } %>
-        </li>
-      </ul>
-    </div>
-  </nav>
-</div>
-<body>
-  
-  <a href="/address" class="brand-logo left">address</a> <br>
-  <a href="/appts" class="brand-logo left">appts</a>
-       
-    
-</body>
+<% include ../partials/header %>
 
-
+  <h3 class="center-align">Welcome, <%=user.name%></h3>
+  <% if (user.portfolio.length > 0){ %>
+  <p class="center-align">Cleaning Appointments</p>
+    <table class="container highlight">
+      <thead>
+        <tr>
+          <th>Date Of Appointment</th>
+          <th>Address</th>
+          <th>Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- this is calling scheema user, userschema, and inside is portfolio -->
+          <% user.portfolio.forEach(p=>{ %>
+            <tr>
+              <td><%= p.date %></td>
+              <td><%= p.address %></td>
+              <td><a href="/users/<%= p._id %>" class="btn-floating btn-large blue "><i class="material-icons">edit</i></a></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+      <% } else { %>
+        <div class="divider"></div>
+        <div class="section center">
+          <h5>Make an appointment here!</h5>
+        </div>
+      <% } %>
+      <h5 class="center"></h5>
+      <form action="/users/new" method="GET" class="container center">
+        <input type="submit" class="waves-effect waves-light btn" value="Add Apppointment" >
+      </form>
+  </body>
 </html>
